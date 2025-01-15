@@ -116,11 +116,35 @@ public class ScoreboardTest {
 
     @Test
     void shouldDisplaySummary_ProperSorting() {
+        var scoreboard = new Scoreboard();
 
+        var team3 = new Team("Argentina");
+        var team4 = new Team("Uruguay");
+        var team5 = new Team("England");
+        var team6 = new Team("Scotland");
+
+        scoreboard.startGame(team1, team2);
+        scoreboard.startGame(team3, team4);
+        scoreboard.startGame(team5, team6);
+
+        scoreboard.updateScore(team1);
+        scoreboard.updateScore(team2);
+        scoreboard.updateScore(team3);
+        scoreboard.updateScore(team4);
+        scoreboard.updateScore(team5);
+        scoreboard.updateScore(team5);
+
+        assertEquals("""
+                Germany - Brazil: 1 - 1
+                Argentina - Uruguay: 1 - 1
+                England - Scotland: 2 - 0
+                """, scoreboard.getSummary());
     }
 
     @Test
     void shouldDisplaySummary_EmptyScoreboard() {
+        var scoreboard = new Scoreboard();
 
+        assertEquals("", scoreboard.getSummary());
     }
 }
