@@ -107,9 +107,9 @@ public class ScoreboardTest {
         scoreboard.updateScore(team5);
 
         assertEquals("""
+                England - Scotland: 3 - 0
                 Germany - Brazil: 1 - 1
                 Argentina - Uruguay: 1 - 0
-                England - Scotland: 3 - 0
                 """, scoreboard.getSummary());
 
     }
