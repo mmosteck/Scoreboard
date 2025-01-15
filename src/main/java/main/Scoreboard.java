@@ -19,6 +19,13 @@ public class Scoreboard {
         gameList.removeIf(game -> game.isParticipant(participant));
     }
 
+    public void updateScore(Team participant) {
+        gameList.stream()
+                .filter(game -> game.isParticipant(participant))
+                .findFirst()
+                .ifPresent(game -> game.score(participant));
+    }
+
     public int getNumberOfRunningGames() {
         return gameList.size();
     }
@@ -29,9 +36,5 @@ public class Scoreboard {
                 .map(Game::toString)
                 .findFirst()
                 .orElse("Scoreboard empty!");
-    }
-
-    public void updateScore(Team team1) {
-
     }
 }

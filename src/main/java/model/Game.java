@@ -17,6 +17,14 @@ public class Game {
         this.awayTeamScore = 0;
     }
 
+    public void score(Team participant) {
+        if (homeTeam.equals(participant)) {
+            homeTeamScore = Math.addExact(1, homeTeamScore);
+        } else {
+            awayTeamScore = Math.addExact(1, awayTeamScore);
+        }
+    }
+
     public boolean isParticipant(Team participant) {
         return homeTeam.equals(participant) || awayTeam.equals(participant);
     }
