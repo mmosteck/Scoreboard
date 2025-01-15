@@ -135,9 +135,9 @@ public class ScoreboardTest {
         scoreboard.updateScore(team5);
 
         assertEquals("""
-                Germany - Brazil: 1 - 1
-                Argentina - Uruguay: 1 - 1
                 England - Scotland: 2 - 0
+                Argentina - Uruguay: 1 - 1
+                Germany - Brazil: 1 - 1
                 """, scoreboard.getSummary());
     }
 
