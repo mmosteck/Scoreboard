@@ -89,6 +89,28 @@ public class ScoreboardTest {
 
     @Test
     void shouldDisplaySummary() {
+        var scoreboard = new Scoreboard();
+        var team3 = new Team("Argentina");
+        var team4 = new Team("Uruguay");
+        var team5 = new Team("England");
+        var team6 = new Team("Scotland");
+
+        scoreboard.startGame(team1, team2);
+        scoreboard.startGame(team3, team4);
+        scoreboard.startGame(team5, team6);
+
+        scoreboard.updateScore(team1);
+        scoreboard.updateScore(team2);
+        scoreboard.updateScore(team3);
+        scoreboard.updateScore(team5);
+        scoreboard.updateScore(team5);
+        scoreboard.updateScore(team5);
+
+        assertEquals("""
+                Germany - Brazil: 1 - 1
+                Argentina - Uruguay: 1 - 0
+                England - Scotland: 3 - 0
+                """, scoreboard.getSummary());
 
     }
 

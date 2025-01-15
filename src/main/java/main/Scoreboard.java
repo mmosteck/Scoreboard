@@ -26,6 +26,10 @@ public class Scoreboard {
                 .ifPresent(game -> game.score(participant));
     }
 
+    public String getSummary() {
+        return null;
+    }
+
     public int getNumberOfRunningGames() {
         return gameList.size();
     }
