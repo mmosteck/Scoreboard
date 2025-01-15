@@ -5,11 +5,11 @@ import model.Team;
 
 import java.util.Comparator;
 import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.SequencedSet;
 
 public class Scoreboard {
 
-    private final Set<Game> gameList = new LinkedHashSet<>();
+    private final SequencedSet<Game> gameList = new LinkedHashSet<>();
 
     public void startGame(Team homeTeam, Team awayTeam) {
         var newGame = new Game(homeTeam, awayTeam);
@@ -29,7 +29,7 @@ public class Scoreboard {
 
     public String getSummary() {
         var summary = new StringBuilder();
-        var sortedGameList = gameList.stream().sorted(Comparator.comparing(Game::getTotalScore, Comparator.reverseOrder()));
+        var sortedGameList = gameList.reversed().stream().sorted(Comparator.comparing(Game::getTotalScore, Comparator.reverseOrder()));
         sortedGameList.forEach(game -> summary.append(game).append("\n"));
         return summary.toString();
     }
