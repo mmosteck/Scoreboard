@@ -15,6 +15,10 @@ public class Scoreboard {
         gameList.add(newGame);
     }
 
+    public void finishGame(Team participant) {
+        gameList.removeIf(game -> game.isParticipant(participant));
+    }
+
     public int getNumberOfRunningGames() {
         return gameList.size();
     }

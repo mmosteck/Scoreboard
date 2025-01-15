@@ -38,12 +38,33 @@ public class ScoreboardTest {
 
     @Test
     void shouldFinishGame() {
+        var scoreboard = new Scoreboard();
+        scoreboard.startGame(team1, team2);
 
+        scoreboard.finishGame(team1);
+
+        assertEquals(0, scoreboard.getNumberOfRunningGames());
+    }
+
+    @Test
+    void shouldFinishGame_EitherTeam() {
+        var scoreboard = new Scoreboard();
+        scoreboard.startGame(team1, team2);
+
+        scoreboard.finishGame(team2);
+
+        assertEquals(0, scoreboard.getNumberOfRunningGames());
     }
 
     @Test
     void shouldNotFinishFinishedGame() {
+        var scoreboard = new Scoreboard();
+        scoreboard.startGame(team1, team2);
 
+        scoreboard.finishGame(team2);
+        scoreboard.finishGame(team1);
+
+        assertEquals(0, scoreboard.getNumberOfRunningGames());
     }
 
     @Test

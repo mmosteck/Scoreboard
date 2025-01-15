@@ -17,6 +17,10 @@ public class Game {
         this.awayTeamScore = 0;
     }
 
+    public boolean isParticipant(Team participant) {
+        return homeTeam.equals(participant) || awayTeam.equals(participant);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
