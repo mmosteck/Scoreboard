@@ -10,17 +10,17 @@ public class ScoreboardTest {
 
     Team team1;
     Team team2;
+    Scoreboard scoreboard;
 
     @BeforeEach
     void setUpData() {
        team1 = new Team("Germany");
        team2 = new Team("Brazil");
+       scoreboard = new Scoreboard();
     }
 
     @Test
     void shouldStartGame() {
-        var scoreboard = new Scoreboard();
-
         scoreboard.startGame(team1, team2);
 
         assertEquals(1, scoreboard.getNumberOfRunningGames());
@@ -28,8 +28,6 @@ public class ScoreboardTest {
 
     @Test
     void shouldNotStartAlreadyStartedGame() {
-        var scoreboard = new Scoreboard();
-
         scoreboard.startGame(team1, team2);
         scoreboard.startGame(team1, team2);
 
@@ -38,7 +36,6 @@ public class ScoreboardTest {
 
     @Test
     void shouldFinishGame() {
-        var scoreboard = new Scoreboard();
         scoreboard.startGame(team1, team2);
 
         scoreboard.finishGame(team1);
@@ -48,7 +45,6 @@ public class ScoreboardTest {
 
     @Test
     void shouldFinishGame_EitherTeam() {
-        var scoreboard = new Scoreboard();
         scoreboard.startGame(team1, team2);
 
         scoreboard.finishGame(team2);
@@ -58,7 +54,6 @@ public class ScoreboardTest {
 
     @Test
     void shouldNotFinishFinishedGame() {
-        var scoreboard = new Scoreboard();
         scoreboard.startGame(team1, team2);
 
         scoreboard.finishGame(team2);
@@ -69,7 +64,6 @@ public class ScoreboardTest {
 
     @Test
     void shouldUpdateScore_HomeTeam() {
-        var scoreboard = new Scoreboard();
         scoreboard.startGame(team1, team2);
 
         scoreboard.updateScore(team1);
@@ -79,7 +73,6 @@ public class ScoreboardTest {
 
     @Test
     void shouldUpdateScore_AwayTeam() {
-        var scoreboard = new Scoreboard();
         scoreboard.startGame(team1, team2);
 
         scoreboard.updateScore(team2);
@@ -88,8 +81,17 @@ public class ScoreboardTest {
     }
 
     @Test
+    void shouldUpdateScore_AwayTeamTwice() {
+        scoreboard.startGame(team1, team2);
+
+        scoreboard.updateScore(team2);
+        scoreboard.updateScore(team2);
+
+        assertEquals("Germany - Brazil: 0 - 2", scoreboard.getGameScore(team1));
+    }
+
+    @Test
     void shouldDisplaySummary() {
-        var scoreboard = new Scoreboard();
         var team3 = new Team("Argentina");
         var team4 = new Team("Uruguay");
         var team5 = new Team("England");
@@ -116,8 +118,6 @@ public class ScoreboardTest {
 
     @Test
     void shouldDisplaySummary_ProperSorting() {
-        var scoreboard = new Scoreboard();
-
         var team3 = new Team("Argentina");
         var team4 = new Team("Uruguay");
         var team5 = new Team("England");
@@ -143,8 +143,6 @@ public class ScoreboardTest {
 
     @Test
     void shouldDisplaySummary_EmptyScoreboard() {
-        var scoreboard = new Scoreboard();
-
         assertEquals("", scoreboard.getSummary());
     }
 }
