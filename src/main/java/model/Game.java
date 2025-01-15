@@ -29,6 +29,11 @@ public class Game {
         return homeTeam.equals(participant) || awayTeam.equals(participant);
     }
 
+    public int getTotalScore() {
+        return Math.addExact(homeTeamScore, awayTeamScore);
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

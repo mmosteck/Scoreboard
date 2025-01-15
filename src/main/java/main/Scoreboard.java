@@ -3,12 +3,13 @@ package main;
 import model.Game;
 import model.Team;
 
-import java.util.HashSet;
+import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Scoreboard {
 
-    private final Set<Game> gameList = new HashSet<>();
+    private final Set<Game> gameList = new LinkedHashSet<>();
 
     public void startGame(Team homeTeam, Team awayTeam) {
         var newGame = new Game(homeTeam, awayTeam);
@@ -27,7 +28,10 @@ public class Scoreboard {
     }
 
     public String getSummary() {
-        return null;
+        var summary = new StringBuilder();
+        var sortedGameList = gameList.stream().sorted(Comparator.comparing(Game::getTotalScore, Comparator.reverseOrder()));
+        sortedGameList.forEach(game -> summary.append(game).append("\n"));
+        return summary.toString();
     }
 
     public int getNumberOfRunningGames() {
