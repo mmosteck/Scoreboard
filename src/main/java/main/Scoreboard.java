@@ -22,4 +22,16 @@ public class Scoreboard {
     public int getNumberOfRunningGames() {
         return gameList.size();
     }
+
+    public String getGameScore(Team participant) {
+        return gameList.stream()
+                .filter(game -> game.isParticipant(participant))
+                .map(Game::toString)
+                .findFirst()
+                .orElse("Scoreboard empty!");
+    }
+
+    public void updateScore(Team team1) {
+
+    }
 }

@@ -32,4 +32,9 @@ public class Game {
     public int hashCode() {
         return Objects.hash(homeTeam, awayTeam);
     }
+
+    @Override
+    public String toString() {
+        return homeTeam + " - " + awayTeam + ": " + homeTeamScore + " - " + awayTeamScore;
+    }
 }

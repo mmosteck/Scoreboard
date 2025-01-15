@@ -69,7 +69,12 @@ public class ScoreboardTest {
 
     @Test
     void shouldUpdateScore_HomeTeam() {
+        var scoreboard = new Scoreboard();
+        scoreboard.startGame(team1, team2);
 
+        scoreboard.updateScore(team1);
+
+        assertEquals("Germany - Brazil: 1 - 0", scoreboard.getGameScore(team1));
     }
 
     @Test
